@@ -1,11 +1,15 @@
 <template>
     <div>
-    <h1>What's up guys? QUANDALE DINGLE HERE</h1>
+        <InfoArrays v-for="things in test2"
+        :key="CPUData.name"
+        :things="CPUData"/>
     </div>
 </template>
 
 <script setup>
-const URL = ``
+
+
+
 
 
 </script>
