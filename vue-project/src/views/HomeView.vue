@@ -1,7 +1,7 @@
 <template>
-    <div>
-
-    </div>
+  <div>
+  <h1> Hello Everyone! Welcome to my home page</h1>
+  </div>
 </template>
 
 <script setup>
