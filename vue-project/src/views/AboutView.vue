@@ -6,36 +6,52 @@
 
 <script>
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-export default {
-  mounted() {
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+console.log(THREE);
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    this.$refs.canvas.appendChild(renderer.domElement);
-
-    const loader = new GLTFLoader();
+const renderer = new THREE.WebGLRenderer({ alpha: true});
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );
 
 
-    loader.load('@/assets/3D_Model/scene.gltf', function (gltf) {
-      scene.add(gltf.scene);
-    }, undefined, function (error) {
-      console.error(error);
-    });
 
-    camera.position.z = 5;
+camera.position.z = 5;
 
-    function animate() {
-      requestAnimationFrame(animate);
-      renderer.render(scene, camera);
-    }
+const loader = new GLTFLoader();
 
-    animate();
-  }
-};
+
+// Load a glTF resource
+loader.load(
+	// resource URL
+	'@assets/scene.gltf',
+	// called when the resource is loaded
+	function ( gltf ) {
+
+		scene.add( gltf.scene );
+
+		gltf.animations; 
+		gltf.scene; 
+		gltf.scenes; 
+		gltf.cameras; 
+		gltf.asset; 
+
+	},
+	// called while loading is progressing
+	function ( xhr ) {
+
+		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+	},
+	// called when loading has errors
+	function ( error ) {
+
+		console.error( 'An error happened' );
+
+	}
+);
 </script>
 
 <style scoped>
