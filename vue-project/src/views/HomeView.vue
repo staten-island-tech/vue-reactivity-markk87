@@ -1,9 +1,11 @@
 <template>
   <div>
-  <GpuCard />
+  <GpuCard /> 
   <CpuSelector />
   <MotherboardSelector />
   <RamSelector />
+
+  <TotalPrice />
     
   </div>
 </template>
@@ -14,6 +16,9 @@ import CpuSelector from '@/components/cpuSelector.vue';
 import GpuCard from '@/components/gpuCard.vue';
 import MotherboardSelector from '@/components/motherboardSelector.vue';
 import RamSelector from '@/components/ramSelector.vue';
+import TotalPrice from '@/components/totalPrice.vue';
+
+
 
 
 
