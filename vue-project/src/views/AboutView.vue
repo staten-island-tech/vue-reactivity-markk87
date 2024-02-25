@@ -23,11 +23,10 @@ camera.position.z = 5;
 const loader = new GLTFLoader();
 
 
-// Load a glTF resource
 loader.load(
-	// resource URL
-	'@assets/scene.gltf',
-	// called when the resource is loaded
+
+	'@assets/brandon.glb',
+
 	function ( gltf ) {
 
 		scene.add( gltf.scene );
@@ -46,12 +45,18 @@ loader.load(
 
 	},
 	// called when loading has errors
-	function ( error ) {
+  function (error) {
+    console.error(error);
+}
 
-		console.error( 'An error happened' );
-
-	}
 );
+
+function animate() {
+    requestAnimationFrame( animate );
+    renderer.render( scene, camera );
+}
+animate();
+
 </script>
 
 <style scoped>
