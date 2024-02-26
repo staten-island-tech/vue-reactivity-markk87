@@ -4,19 +4,25 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 console.log(THREE);
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.001, 1000 );
 
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({alpha: true});
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
+const light = new THREE.AmbientLight( 0x404040, 100 ); // soft white light
+scene.add( light );
 
+const controls = new OrbitControls( camera, renderer.domElement );
+camera.position.set( -10, 0, 0 );
+controls.update();
 
 camera.position.z = 5;
 
@@ -25,7 +31,7 @@ const loader = new GLTFLoader();
 
 loader.load(
 
-	'@assets/brandon.glb',
+	'./custom_gaming_pc_fbx_file/scene.gltf',
 
 	function ( gltf ) {
 
