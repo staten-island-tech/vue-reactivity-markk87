@@ -17,12 +17,14 @@ const renderer = new THREE.WebGLRenderer({alpha: true});
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
-const light = new THREE.AmbientLight( 0x404040, 100 ); // soft white light
+const light = new THREE.AmbientLight( 0x404040, 100 );
 scene.add( light );
 
 const controls = new OrbitControls( camera, renderer.domElement );
-camera.position.set( -10, 0, 0 );
+camera.position.set( -10, 0, 0 ,);
+
 controls.update();
+
 
 camera.position.z = 5;
 
@@ -31,7 +33,7 @@ const loader = new GLTFLoader();
 
 loader.load(
 
-	'./custom_gaming_pc_fbx_file/scene.gltf',
+	'./5_3_2023.glb',
 
 	function ( gltf ) {
 
