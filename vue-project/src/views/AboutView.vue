@@ -22,8 +22,9 @@ scene.add( light );
 
 const controls = new OrbitControls( camera, renderer.domElement );
 camera.position.set( -10, 0, 0 ,);
-
 controls.update();
+controls.autoRotate = true;
+controls.autoRotateSpeed = 2.0;
 
 
 camera.position.z = 5;

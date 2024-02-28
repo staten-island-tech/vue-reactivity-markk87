@@ -2,13 +2,21 @@
     <div>
         <h1 class="cpuHeader">Central Processing Unit:</h1>
         <select v-model="selectedCPU" class="cpuSelector">
-            <option class="cpuOption" v-for="cpu in cpus" :key="cpu.name" :value="cpu">{{ cpu.name }} - ${{ cpu.price }}</option>
+            <option class="cpuOption" v-for="cpu in cpus" :key="cpu.name" :value="cpu" >{{ cpu.name }} - ${{ cpu.price }}</option>
         </select>
+        <button @click="fart"></button>
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import { store } from '@/stores/store';
+
+
+function fart () {
+    store.push(cpus.price);
+    console.log(store.count);
+}
 
 const selectedCPU = ref(null);
         
