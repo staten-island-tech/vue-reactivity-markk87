@@ -1,26 +1,20 @@
 <template>
     <div>
-      <h1>Total Price:</h1>
-      <p v-if="totalPrice">Combined Price: ${{ totalPrice }}</p>
-      <p v-else>Please select a CPU and GPU</p>
+    <button @click="calculateTotalPrice">Calculate Total Price</button>
+    <p>Total Price: ${{ totalPrice }}</p>
     </div>
   </template>
   
-  <script setup>
-  import { ref, watch } from 'vue'
-  
-  const selectedCPU = ref(null);
-  const selectedGPU = ref(null);
-  const totalPrice = ref(0);
-  
-  watch([selectedCPU, selectedGPU], () => {
-    if (selectedCPU.value && selectedGPU.value) {
-      totalPrice.value = selectedCPU.value.price + selectedGPU.value.price;
-    } else {
-      totalPrice.value = 0;
-    }
-  });
-  
+<script setup>
+import { ref } from 'vue';
+import { store } from '@/stores/store';
+
+const totalPrice = ref(0);
+
+function calculateTotalPrice() {
+  let selectedParts = [store.selectedCPU, store.selectedGPU, store.selectedRAM, store.selectedMotherboard];
+  totalPrice.value = selectedParts.reduce((acc, part) => acc + (part ? part.price : 0), 0);
+}
   </script>
   
   <style scoped>
