@@ -37,9 +37,8 @@ loader.load(
 	'./5_3_2023.glb',
 
 	function ( gltf ) {
-
+		const model = gltf.scene
 		scene.add( gltf.scene );
-
 		gltf.animations; 
 		gltf.scene; 
 		gltf.scenes; 
@@ -47,21 +46,28 @@ loader.load(
 		gltf.asset; 
 
 	},
-	// called while loading is progressing
+	
 	function ( xhr ) {
 
 		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
 
 	},
-	// called when loading has errors
+	
   function (error) {
     console.error(error);
 }
 
 );
 
-function animate() {
+function animate(model) {
     requestAnimationFrame( animate );
+
+	if (model) {
+		model.rotation.x += 0.01
+	}
+
+	controls.update
+
     renderer.render( scene, camera );
 }
 animate();
