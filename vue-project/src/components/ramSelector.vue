@@ -1,7 +1,7 @@
 <template>
     <div>
     <h1>Random Access Memory:</h1>
-    <select class="ramSelect"><option v-for="memory in ram"
+    <select v-model="selectedRAM"  class="ramSelect"><option v-for="memory in ram"
     :key="memory.name" :value="memory"> {{ memory.name }} - ${{ memory.price }}</option>
     </select>
     </div>

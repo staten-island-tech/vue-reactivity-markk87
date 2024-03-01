@@ -23,8 +23,7 @@ scene.add( light );
 const controls = new OrbitControls( camera, renderer.domElement );
 camera.position.set( -10, 0, 0 ,);
 controls.update();
-controls.autoRotate = true;
-controls.autoRotateSpeed = 2.0;
+
 
 
 camera.position.z = 5;
@@ -37,7 +36,6 @@ loader.load(
 	'./5_3_2023.glb',
 
 	function ( gltf ) {
-		const model = gltf.scene
 		scene.add( gltf.scene );
 		gltf.animations; 
 		gltf.scene; 
@@ -62,9 +60,7 @@ loader.load(
 function animate(model) {
     requestAnimationFrame( animate );
 
-	if (model) {
-		model.rotation.x += 0.01
-	}
+
 
 	controls.update
 
