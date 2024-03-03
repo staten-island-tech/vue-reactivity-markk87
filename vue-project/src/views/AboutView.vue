@@ -6,66 +6,55 @@
 
 <script setup>
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
-console.log(THREE);
+
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.001, 1000 );
 
-const renderer = new THREE.WebGLRenderer({alpha: true});
-renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
+camera.position.set(0, 0, 30);
 
-const light = new THREE.AmbientLight( 0x404040, 100 );
-scene.add( light );
+const renderer = new THREE.WebGLRenderer({ alpha: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
 
-const controls = new OrbitControls( camera, renderer.domElement );
-camera.position.set( -10, 0, 0 ,);
+const light = new THREE.AmbientLight(0x404040, 100);
+scene.add(light);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.autoRotate = true;
+controls.autoRotateSpeed = 3.0
+controls.enableDamping = true;
 controls.update();
-
-
-
-camera.position.z = 5;
 
 const loader = new GLTFLoader();
 
+let model;
 
 loader.load(
-
-	'./5_3_2023.glb',
-
-	function ( gltf ) {
-		scene.add( gltf.scene );
-		gltf.animations; 
-		gltf.scene; 
-		gltf.scenes; 
-		gltf.cameras; 
-		gltf.asset; 
-
-	},
-	
-	function ( xhr ) {
-
-		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-
-	},
-	
-  function (error) {
-    console.error(error);
-}
-
+    './custom_gaming_pc_fbx_file/scene.gltf',
+    function (gltf) {
+        model = gltf.scene;
+        const bbox = new THREE.Box3().setFromObject(model);
+        const center = bbox.getCenter(new THREE.Vector3());
+        model.position.sub(center);
+        scene.add(model);
+    },
+    function (xhr) {
+        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+    },
+    function (error) {
+        console.error(error);
+    }
 );
 
-function animate(model) {
-    requestAnimationFrame( animate );
-
-
-
-	controls.update
-
-    renderer.render( scene, camera );
+function animate() {
+    requestAnimationFrame(animate);
+    controls.update();
+    renderer.render(scene, camera);
 }
+
 animate();
 
 </script>

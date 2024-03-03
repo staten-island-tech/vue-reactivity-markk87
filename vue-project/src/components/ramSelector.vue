@@ -1,6 +1,6 @@
 <template>
     <div>
-    <h1>Random Access Memory:</h1>
+    <h1 class="RAMheader">Random Access Memory:</h1>
     <select v-model="selectedRAM"  class="ramSelect"><option v-for="memory in ram"
     :key="memory.name" :value="memory"> {{ memory.name }} - ${{ memory.price }}</option>
     </select>
@@ -21,6 +21,17 @@ const ram = [{"name":"Corsair Vengeance LPX 16 GB","price":43.99,"speed":[4,3200
 
 
 
-<style lang="scss" scoped>
+<style scoped>
+
+.ramSelect:hover {
+    transform: scale(1.15);
+    transition: all 0.5s ease-out;
+}
+
+.RAMheader {
+    font-size: 1.4rem;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
 
 </style>

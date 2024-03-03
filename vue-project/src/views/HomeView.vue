@@ -4,7 +4,10 @@
     <GpuCard />
     <MotherboardSelector />
     <RamSelector />
+    <SsdSelector />
 
+
+    <h2 class="totalPrice">Total Price:</h2>
     <TotalPrice />
   </div>  
 </template>
@@ -16,6 +19,7 @@ import GpuCard from '@/components/gpuCard.vue';
 import TotalPrice from '@/components/totalPrice.vue';
 import MotherboardSelector from '@/components/motherboardSelector.vue';
 import RamSelector from '@/components/ramSelector.vue';
+import SsdSelector from '@/components/ssdSelector.vue';
 
 
 
@@ -23,5 +27,8 @@ import RamSelector from '@/components/ramSelector.vue';
 
 <style scoped>
 
+.totalPrice {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 
 </style>
